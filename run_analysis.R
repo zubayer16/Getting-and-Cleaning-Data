@@ -1,0 +1,7 @@
+x_train<-read.table("UCI HAR Dataset/train/X_train.txt")
+x_test<-read.table("UCI HAR Dataset/test/X_test.txt")
+mergedat<-merge(x_train,x_test,all=TRUE)
+meanData<-summarise_each(mergedat, funs(mean))
+sdData<-summarise_each(mergedat, funs(sd))
+setnames(mergedat, old = c('V1','V2'), new = c('tBodyAcc-mean()-X','tBodyAcc-mean()-Y'))
+write.table(mergedat,file="corse3_project.txt",row.name = FALSE) 
